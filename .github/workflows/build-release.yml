@@ -19,6 +19,7 @@ jobs:
     - name: Install dependencies
       run: |
         wget https://github.com/niess/python-appimage/releases/download/python3.11/python3.11.6-cp311-cp311-manylinux_2_28_x86_64.AppImage
+        chmod +x python3.11.6-cp311-cp311-manylinux_2_28_x86_64.AppImage
         wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
         chmod +x appimagetool-x86_64.AppImage
         ./python3.11.6-cp311-cp311-manylinux_2_28_x86_64.AppImage --appimage-extract
