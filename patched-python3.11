@@ -19,7 +19,7 @@ export TK_LIBRARY="${APPDIR}/usr/share/tcltk/tk8.6"
 export TKPATH="${TK_LIBRARY}"
 
 # unset Sigil launch script LD_LIBRARY_PATH
-if [ -n "${$LD_LIBRARY_PATH}" ]; then
+if [ -n "{$LD_LIBRARY_PATH}" ]; then
     unset $LD_LIBRARY_PATH
 fi
 
