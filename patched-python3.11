@@ -20,7 +20,7 @@ export TKPATH="${TK_LIBRARY}"
 
 # unset Sigil launch script LD_LIBRARY_PATH
 if [ -n "{$LD_LIBRARY_PATH}" ]; then
-    unset $LD_LIBRARY_PATH
+    unset LD_LIBRARY_PATH
 fi
 
 # Export SSL certificate
