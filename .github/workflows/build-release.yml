@@ -24,7 +24,7 @@ jobs:
         chmod +x appimagetool-x86_64.AppImage
         ./python3.11.6-cp311-cp311-manylinux_2_28_x86_64.AppImage --appimage-extract
         mv squashfs-root python3.11.6-cp311-cp311-manylinux_2_28_x86_64.AppDir
-        cp -f ./python3.11 ./python3.11.6-cp311-cp311-manylinux_2_28_x86_64.AppDir/usr/bin/python3.11
+        cp -f ./patched-python3.11 ./python3.11.6-cp311-cp311-manylinux_2_28_x86_64.AppDir/usr/bin/python3.11
         ln -s python3.11.6-cp311-cp311-manylinux_2_28_x86_64.AppDir/AppRun python3.11
         ./python3.11 -m pip install -r requirements${{ github.event.inputs.version }}.txt
         ./appimagetool-x86_64.AppImage -n python3.11.6-cp311-cp311-manylinux_2_28_x86_64.AppDir python3.11.6-cp311-cp311-manylinux_2_28_x86_64.AppImage
