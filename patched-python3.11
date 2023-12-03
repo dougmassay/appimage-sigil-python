@@ -27,5 +27,5 @@ fi
 export SSL_CERT_FILE="${APPDIR}/opt/_internal/certs.pem"
 
 # Call Python
-"$APPDIR/opt/python3.11/bin/python3.11" -s "$@"
+"$APPDIR/opt/python3.11/bin/python3.11" "$@"
 
