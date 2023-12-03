@@ -2,7 +2,7 @@
 name: Build Sigil Plugin Python AppImages
 
 on:
- workflow_dispatch:
+  workflow_dispatch:
 #  inputs:
 #    version:
 #      description: 'Qt version (5|6)'
@@ -38,7 +38,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: AppImage-artifact
-        path: *.AppImage
+        path: ./
         retention-days: 7
 
     #- name: Create Release
