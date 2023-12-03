@@ -31,7 +31,8 @@ jobs:
 
     - name: Build Python AppImage
       run: |
-        python3 -m python_appimage build local -p /opt/hostedtoolcache/Python/3.*/x64/bin/python3
+        echo $(which python3)
+        python3 -m python_appimage build local -p /opt/hostedtoolcache/Python/${{matrix.version}}/x64/bin/python3
 
     - name: Upload Artifact
       #if: "contains(github.event.head_commit.message, '[deploy]')"
