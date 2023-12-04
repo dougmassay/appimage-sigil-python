@@ -33,13 +33,29 @@ jobs:
       run: |
         echo $(which python3)
         python3 -m python_appimage build local -p /opt/hostedtoolcache/Python/${{matrix.version}}/x64/bin/python3
+        ./python3.11.3-x86_64.AppImage --appimage-extract > /dev/null
+        mv squashfs-root python3.11.3-x86_64.AppDir
+        rm -f ./python3.11.3-x86_64.AppImage
+        ln -s  python3.11.3-x86_64.AppDir/AppRun python3.11
+        ./python3.11 -m pip install -r requirements6.txt
+        rm -f -r /opt/hostedtoolcache/Python/${{matrix.version}}/x64/lib/site-packages/PySide6/Qt
+        rm -f -r /opt/hostedtoolcache/Python/${{matrix.version}}/x64/lib/site-packages/PySide6/glue
+        rm -f -r /opt/hostedtoolcache/Python/${{matrix.version}}/x64/lib/site-packages/PySide6/include
+        rm -f -r /opt/hostedtoolcache/Python/${{matrix.version}}/x64/lib/site-packages/PySide6/scripts
+        rm -f -r /opt/hostedtoolcache/Python/${{matrix.version}}/x64/lib/site-packages/PySide6/support
+        rm -f -r /opt/hostedtoolcache/Python/${{matrix.version}}/x64/lib/site-packages/PySide6/typesystems
+        rm -f -r /opt/hostedtoolcache/Python/${{matrix.version}}/x64/lib/site-packages/PySide6_Essentials-6.5.3.dist-info
+        rm -f -r /opt/hostedtoolcache/Python/${{matrix.version}}/x64/lib/site-packages/shiboken6-6.5.3.dist-info
+        wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
+        chmod +x appimagetool-x86_64.AppImage
+        ./appimagetool-x86_64.AppImage -n python3.11.3-x86_64.AppDir sigil-qt6-python3.11.3-x86_64.AppImage
 
     - name: Upload Artifact
       #if: "contains(github.event.head_commit.message, '[deploy]')"
       uses: actions/upload-artifact@v3
       with:
         name: AppImage-artifact
-        path: ./
+        path: sigil-qt6-python3.11.3-x86_64.AppImage
         retention-days: 7
 
     #- name: Create Release
