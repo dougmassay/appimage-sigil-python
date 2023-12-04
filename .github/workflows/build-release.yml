@@ -38,14 +38,13 @@ jobs:
         rm -f ./python3.11.3-x86_64.AppImage
         ln -s  python3.11.3-x86_64.AppDir/AppRun python3.11
         ./python3.11 -m pip install -r requirements6.txt
-        rm -f -r /opt/hostedtoolcache/Python/${{matrix.version}}/x64/lib/site-packages/PySide6/Qt
-        rm -f -r /opt/hostedtoolcache/Python/${{matrix.version}}/x64/lib/site-packages/PySide6/glue
-        rm -f -r /opt/hostedtoolcache/Python/${{matrix.version}}/x64/lib/site-packages/PySide6/include
-        rm -f -r /opt/hostedtoolcache/Python/${{matrix.version}}/x64/lib/site-packages/PySide6/scripts
-        rm -f -r /opt/hostedtoolcache/Python/${{matrix.version}}/x64/lib/site-packages/PySide6/support
-        rm -f -r /opt/hostedtoolcache/Python/${{matrix.version}}/x64/lib/site-packages/PySide6/typesystems
-        rm -f -r /opt/hostedtoolcache/Python/${{matrix.version}}/x64/lib/site-packages/PySide6_Essentials-6.5.3.dist-info
-        rm -f -r /opt/hostedtoolcache/Python/${{matrix.version}}/x64/lib/site-packages/shiboken6-6.5.3.dist-info
+        rm -rf ./python3.11.3-x86_64.AppDir/opt/python3.11/lib/python3.11/site-packages/PySide6/Qt
+        rm -rf ./python3.11.3-x86_64.AppDir/opt/python3.11/lib/python3.11/site-packages/PySide6/glue
+        rm -rf ./python3.11.3-x86_64.AppDir/opt/python3.11/lib/python3.11/site-packages/PySide6/include
+        rm -rf ./python3.11.3-x86_64.AppDir/opt/python3.11/lib/python3.11/site-packages/PySide6/scripts
+        rm -rf ./python3.11.3-x86_64.AppDir/opt/python3.11/lib/python3.11/site-packages/PySide6/support
+        rm -rf ./python3.11.3-x86_64.AppDir/opt/python3.11/lib/python3.11/site-packages/PySide6/typesystems
+        rm -rf ./python3.11.3-x86_64.AppDir/opt/python3.11/lib/python3.11/site-packages/*.dist-info
         wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
         chmod +x appimagetool-x86_64.AppImage
         ./appimagetool-x86_64.AppImage -n python3.11.3-x86_64.AppDir sigil-qt6-python3.11.3-x86_64.AppImage
