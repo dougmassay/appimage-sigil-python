@@ -20,7 +20,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Setup Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: '${{matrix.version}}'
 
@@ -61,7 +61,7 @@ jobs:
 
     - name: Upload Artifact
       #if: "contains(github.event.head_commit.message, '[deploy]')"
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: AppImage-artifact
         path: sigil-qt6-python3.11.3-x86_64.AppImage
