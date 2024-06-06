@@ -14,40 +14,26 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: Build Sigil Python
       run: |
-        wget https://github.com/niess/python-appimage/releases/download/python3.11/python3.11.6-cp311-cp311-manylinux_2_28_x86_64.AppImage
-        chmod +x python3.11.6-cp311-cp311-manylinux_2_28_x86_64.AppImage
+        wget https://github.com/niess/python-appimage/releases/download/python3.11/python3.11.9-cp311-cp311-manylinux_2_28_x86_64.AppImage
+        chmod +x python3.11.9-cp311-cp311-manylinux_2_28_x86_64.AppImage
         wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
         chmod +x appimagetool-x86_64.AppImage
-        ./python3.11.6-cp311-cp311-manylinux_2_28_x86_64.AppImage --appimage-extract
-        mv squashfs-root python3.11.6-cp311-cp311-manylinux_2_28_x86_64.AppDir
-        cp -f ./patched-python3.11 ./python3.11.6-cp311-cp311-manylinux_2_28_x86_64.AppDir/usr/bin/python3.11
-        ln -s python3.11.6-cp311-cp311-manylinux_2_28_x86_64.AppDir/AppRun python3.11
+        ./python3.11.9-cp311-cp311-manylinux_2_28_x86_64.AppImage --appimage-extract
+        mv squashfs-root python3.11.9-cp311-cp311-manylinux_2_28_x86_64.AppDir
+        cp -f ./patched-python3.11 ./python3.11.9-cp311-cp311-manylinux_2_28_x86_64.AppDir/usr/bin/python3.11
+        ln -s python3.11.9-cp311-cp311-manylinux_2_28_x86_64.AppDir/AppRun python3.11
         ./python3.11 -m pip install -r requirements${{ github.event.inputs.version }}.txt
-        ./appimagetool-x86_64.AppImage -n python3.11.6-cp311-cp311-manylinux_2_28_x86_64.AppDir python3.11.6-cp311-cp311-manylinux_2_28_x86_64.AppImage
-        mv python3.11.6-cp311-cp311-manylinux_2_28_x86_64.AppImage sigil-qt${{ github.event.inputs.version }}-python3.11_x86_64.AppImage
+        ./appimagetool-x86_64.AppImage -n python3.11.9-cp311-cp311-manylinux_2_28_x86_64.AppDir python3.11.9-cp311-cp311-manylinux_2_28_x86_64.AppImage
+        mv python3.11.9-cp311-cp311-manylinux_2_28_x86_64.AppImage sigil-qt${{ github.event.inputs.version }}-python3.11_x86_64.AppImage
 
     - name: Upload Artifact
-      #if: "contains(github.event.head_commit.message, '[deploy]')"
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: AppImage-artifact
         path: sigil-qt${{ github.event.inputs.version }}-python3.11_x86_64.AppImage
         retention-days: 3
 
-    #- name: Create Release
-    #  if: startswith( github.ref, 'refs/tags/')
-    #  uses: ncipollo/release-action@v1
-    #  with:
-    #    token: ${{ secrets.GITHUB_TOKEN }}
-    #    name: ${{ env.PLUGIN_NAME }} ${{ steps.get_tag_name.outputs.TAGNAME }}
-    #    body: |
-    #      Changes in this Release
-    #      - First Change
-    #      - Second Change
-    #    draft: true
-    #    prerelease: false
-    #    artifacts: './*.zip'
