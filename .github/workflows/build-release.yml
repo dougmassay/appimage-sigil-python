@@ -35,5 +35,5 @@ jobs:
       with:
         name: AppImage-artifact
         path: sigil-qt${{ github.event.inputs.version }}-python3.11_x86_64.AppImage
-        retention-days: 3
+        retention-days: 8
 
