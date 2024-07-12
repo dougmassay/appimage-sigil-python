@@ -7,7 +7,7 @@ on:
 jobs:
   build:
     #if: "!contains(github.event.head_commit.message, '[skip ci]')"
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-20.04
 
     steps:
     - uses: actions/checkout@v4
@@ -16,14 +16,14 @@ jobs:
       run: |
         wget https://github.com/niess/python-appimage/releases/download/python3.11/python3.11.9-cp311-cp311-manylinux_2_28_x86_64.AppImage
         chmod +x python3.11.9-cp311-cp311-manylinux_2_28_x86_64.AppImage
-        wget https://github.com/AppImage/AppImageKit/releases/download/static/StaticFUSE3_1.0_x86_64.AppImage
+        wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
         chmod +x StaticFUSE3_1.0_x86_64.AppImage
         ./python3.11.9-cp311-cp311-manylinux_2_28_x86_64.AppImage --appimage-extract
         mv squashfs-root python3.11.9-cp311-cp311-manylinux_2_28_x86_64.AppDir
         cp -f ./patched-python3.11 ./python3.11.9-cp311-cp311-manylinux_2_28_x86_64.AppDir/usr/bin/python3.11
         ln -s python3.11.9-cp311-cp311-manylinux_2_28_x86_64.AppDir/AppRun python3.11
         ./python3.11 -m pip install -r requirements6.txt
-        ./StaticFUSE3_1.0_x86_64.AppImage -n python3.11.9-cp311-cp311-manylinux_2_28_x86_64.AppDir python3.11.9-cp311-cp311-manylinux_2_28_x86_64.AppImage
+        ./appimagetool-x86_64.AppImage -n python3.11.9-cp311-cp311-manylinux_2_28_x86_64.AppDir python3.11.9-cp311-cp311-manylinux_2_28_x86_64.AppImage
         mv python3.11.9-cp311-cp311-manylinux_2_28_x86_64.AppImage sigil-qt6-python3.11_x86_64.AppImage
 
     - name: Upload Artifact
