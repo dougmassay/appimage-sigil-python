@@ -17,7 +17,7 @@ jobs:
         wget https://github.com/niess/python-appimage/releases/download/python3.11/python3.11.9-cp311-cp311-manylinux_2_28_x86_64.AppImage
         chmod +x python3.11.9-cp311-cp311-manylinux_2_28_x86_64.AppImage
         wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
-        chmod +x StaticFUSE3_1.0_x86_64.AppImage
+        chmod +x appimagetool-x86_64.AppImage
         ./python3.11.9-cp311-cp311-manylinux_2_28_x86_64.AppImage --appimage-extract
         mv squashfs-root python3.11.9-cp311-cp311-manylinux_2_28_x86_64.AppDir
         cp -f ./patched-python3.11 ./python3.11.9-cp311-cp311-manylinux_2_28_x86_64.AppDir/usr/bin/python3.11
